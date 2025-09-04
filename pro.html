@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFest 2024 - Event Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .modal {
+            display: none;
+        }
+        .modal.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">AGNIRVA 2k25</h1>
+            <p class="text-xl md:text-2xl opacity-90">Register for Amazing Tech & Non-Tech Events</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-8 py-4">
+                <button onclick="showCategory('tech')" class="nav-btn px-6 py-2 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+                    💻 Tech Events
+                </button>
+                <button onclick="showCategory('nontech')" class="nav-btn px-6 py-2 rounded-full bg-purple-600 text-white font-semibold hover:bg-purple-700 transition">
+                    🎨 Non-Tech Events
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tech Events Section -->
+    <section id="tech-events" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">💻 Technical Events</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Coding Competition -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover cursor-pointer" onclick="openModal('coding-modal')">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Coding Competition</h3>
+                    <p class="text-gray-600 mb-4">Test your programming skills in this intense coding challenge</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-600 font-semibold">Prize: ₹3,000</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover cursor-pointer" onclick="openModal('webdev-modal')">
+                    <div class="text-4xl mb-4">🌐</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Quiz Competition</h3>
+                    <p class="text-gray-600 mb-4">Knowledge is your weapon—are you ready to conquer the quiz arena?</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-600 font-semibold">Prize: ₹6,000</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI/ML Challenge -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover cursor-pointer" onclick="openModal('aiml-modal')">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Power Point Presentation</h3>
+                    <p class="text-gray-600 mb-4">Deliver your message with clarity and confidence.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-600 font-semibold">Prize: ₹75,000</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover cursor-pointer" onclick="openModal('aiml-modal')">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">AI/ML Challenge</h3>
+                    <p class="text-gray-600 mb-4">Solve real-world problems using AI and Machine Learning</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-600 font-semibold">Prize: ₹75,000</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Non-Tech Events Section -->
+    <section id="nontech-events" class="py-12 bg-gray-100" style="display: none;">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">🎨 Non-Technical Events</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Photography -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover cursor-pointer" onclick="openModal('photography-modal')">
+                    <div class="text-4xl mb-4">📸</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Photography Contest</h3>
+                    <p class="text-gray-600 mb-4">Capture the perfect moment and showcase your creativity</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-600 font-semibold">Prize: ₹25,000</span>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Competition -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover cursor-pointer" onclick="openModal('quiz-modal')">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Quiz Competition</h3>
+                    <p class="text-gray-600 mb-4">Test your general knowledge and win exciting prizes</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-600 font-semibold">Prize: ₹20,000</span>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Design Challenge -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover cursor-pointer" onclick="openModal('design-modal')">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Design Challenge</h3>
+                    <p class="text-gray-600 mb-4">Create stunning visual designs and artwork</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-600 font-semibold">Prize: ₹35,000</span>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Template for Coding Competition -->
+    <div id="coding-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border-4 border-blue-600 mx-auto my-10">
+
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">⚡ Coding Competition</h2>
+                    <button onclick="closeModal('coding-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">📋 About the Event</h3>
+                        <p class="text-gray-600 mb-4">A competitive programming contest where participants solve algorithmic problems within a time limit. Test your problem-solving skills and coding efficiency.</p>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">📜 Rules & Guidelines</h3>
+                        <ul class="text-gray-600 space-y-1 mb-4">
+                            <li>• Duration: 3 hours</li>
+                            <li>• Individual participation only</li>
+                            <li>• Languages: C++, Java, Python allowed</li>
+                            <li>• No internet access during contest</li>
+                            <li>• Bring your own laptop</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">🏆 Prize Details</h3>
+                        <div class="text-gray-600 mb-4">
+                            <p>🥇 1st Place: ₹2,000</p>
+                            <p>🥈 2nd Place: ₹1,000</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">👥 Coordinators</h3>
+                        <div class="space-y-3 mb-6">
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="font-semibold">Rahul Sharma</p>
+                                <p class="text-sm text-gray-600">📧 rahul.sharma@techfest.com</p>
+                                <p class="text-sm text-gray-600">📱 +91 98765 43210</p>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="font-semibold">Priya Patel</p>
+                                <p class="text-sm text-gray-600">📧 priya.patel@techfest.com</p>
+                                <p class="text-sm text-gray-600">📱 +91 87654 32109</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3">Register Now!</h4>
+                            <p class="text-sm text-gray-600 mb-3">Click the button below to register via Google Form</p>
+                            <button onclick="openGoogleForm('coding')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+                                📝 Register for Event
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Modals (Web Development) -->
+    <div id="webdev-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">🌐 Web Development Challenge</h2>
+                    <button onclick="closeModal('webdev-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">📋 About the Event</h3>
+                        <p class="text-gray-600 mb-4">Build a complete web application from scratch in 24 hours. Showcase your frontend and backend development skills.</p>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">📜 Rules & Guidelines</h3>
+                        <ul class="text-gray-600 space-y-1 mb-4">
+                            <li>• Duration: 24 hours</li>
+                            <li>• Team size: 2-4 members</li>
+                            <li>• Any web technology allowed</li>
+                            <li>• Must be responsive design</li>
+                            <li>• Final presentation required</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">🏆 Prize Details</h3>
+                        <div class="text-gray-600 mb-4">
+                            <p>🥇 1st Place: ₹18,000</p>
+                            <p>🥈 2nd Place: ₹8,000</p>
+                            <p>🥉 3rd Place: ₹4,000</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">👥 Coordinators</h3>
+                        <div class="space-y-3 mb-6">
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="font-semibold">Ankit Kumar</p>
+                                <p class="text-sm text-gray-600">📧 ankit.kumar@techfest.com</p>
+                                <p class="text-sm text-gray-600">📱 +91 76543 21098</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3">Register Your Team!</h4>
+                            <p class="text-sm text-gray-600 mb-3">Click the button below to register via Google Form</p>
+                            <button onclick="openGoogleForm('webdev')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+                                📝 Register Team
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI/ML Modal -->
+    <div id="aiml-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">🤖 AI/ML Challenge</h2>
+                    <button onclick="closeModal('aiml-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">📋 About the Event</h3>
+                        <p class="text-gray-600 mb-4">Solve complex real-world problems using Artificial Intelligence and Machine Learning techniques. Build innovative solutions that make a difference.</p>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">📜 Rules & Guidelines</h3>
+                        <ul class="text-gray-600 space-y-1 mb-4">
+                            <li>• Duration: 48 hours</li>
+                            <li>• Team size: 3-5 members</li>
+                            <li>• Python/R preferred</li>
+                            <li>• Dataset will be provided</li>
+                            <li>• Model deployment required</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">🏆 Prize Details</h3>
+                        <div class="text-gray-600 mb-4">
+                            <p>🥇 1st Place: ₹40,000</p>
+                            <p>🥈 2nd Place: ₹20,000</p>
+                            <p>🥉 3rd Place: ₹15,000</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-blue-600">👥 Coordinators</h3>
+                        <div class="space-y-3 mb-6">
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="font-semibold">Dr. Sarah Johnson</p>
+                                <p class="text-sm text-gray-600">📧 sarah.johnson@techfest.com</p>
+                                <p class="text-sm text-gray-600">📱 +91 65432 10987</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3">Register Your Team!</h4>
+                            <p class="text-sm text-gray-600 mb-3">Click the button below to register via Google Form</p>
+                            <button onclick="openGoogleForm('aiml')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+                                📝 Register Team
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photography Modal -->
+    <div id="photography-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">📸 Photography Contest</h2>
+                    <button onclick="closeModal('photography-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">📋 About the Event</h3>
+                        <p class="text-gray-600 mb-4">Capture the essence of technology and innovation through your lens. Submit your best photographs in various categories.</p>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">📜 Rules & Guidelines</h3>
+                        <ul class="text-gray-600 space-y-1 mb-4">
+                            <li>• Individual participation</li>
+                            <li>• Max 3 submissions per person</li>
+                            <li>• Original work only</li>
+                            <li>• High resolution required</li>
+                            <li>• Theme: "Future Tech"</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">🏆 Prize Details</h3>
+                        <div class="text-gray-600 mb-4">
+                            <p>🥇 1st Place: ₹15,000</p>
+                            <p>🥈 2nd Place: ₹7,000</p>
+                            <p>🥉 3rd Place: ₹3,000</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">👥 Coordinators</h3>
+                        <div class="space-y-3 mb-6">
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="font-semibold">Maya Singh</p>
+                                <p class="text-sm text-gray-600">📧 maya.singh@techfest.com</p>
+                                <p class="text-sm text-gray-600">📱 +91 54321 09876</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3">Register Now!</h4>
+                            <p class="text-sm text-gray-600 mb-3">Click the button below to register via Google Form</p>
+                            <button onclick="openGoogleForm('photography')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+                                📝 Register for Contest
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quiz-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">🧠 Quiz Competition</h2>
+                    <button onclick="closeModal('quiz-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">📋 About the Event</h3>
+                        <p class="text-gray-600 mb-4">Test your knowledge across various domains including technology, science, current affairs, and general knowledge in this exciting quiz competition.</p>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">📜 Rules & Guidelines</h3>
+                        <ul class="text-gray-600 space-y-1 mb-4">
+                            <li>• Team size: 2-3 members</li>
+                            <li>• Multiple rounds</li>
+                            <li>• No electronic devices allowed</li>
+                            <li>• Time limit per question</li>
+                            <li>• Final buzzer round</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">🏆 Prize Details</h3>
+                        <div class="text-gray-600 mb-4">
+                            <p>🥇 1st Place: ₹12,000</p>
+                            <p>🥈 2nd Place: ₹5,000</p>
+                            <p>🥉 3rd Place: ₹3,000</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">👥 Coordinators</h3>
+                        <div class="space-y-3 mb-6">
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="font-semibold">Vikram Gupta</p>
+                                <p class="text-sm text-gray-600">📧 vikram.gupta@techfest.com</p>
+                                <p class="text-sm text-gray-600">📱 +91 43210 98765</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3">Register Your Team!</h4>
+                            <p class="text-sm text-gray-600 mb-3">Click the button below to register via Google Form</p>
+                            <button onclick="openGoogleForm('quiz')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+                                📝 Register Team
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design Modal -->
+    <div id="design-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">🎨 Design Challenge</h2>
+                    <button onclick="closeModal('design-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">📋 About the Event</h3>
+                        <p class="text-gray-600 mb-4">Unleash your creativity in this design challenge. Create stunning visual designs, logos, posters, or digital art that represents the future of technology.</p>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">📜 Rules & Guidelines</h3>
+                        <ul class="text-gray-600 space-y-1 mb-4">
+                            <li>• Individual or team (max 2)</li>
+                            <li>• Any design software allowed</li>
+                            <li>• Original work only</li>
+                            <li>• Submit in high resolution</li>
+                            <li>• Theme: "Tech Revolution"</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">🏆 Prize Details</h3>
+                        <div class="text-gray-600 mb-4">
+                            <p>🥇 1st Place: ₹20,000</p>
+                            <p>🥈 2nd Place: ₹10,000</p>
+                            <p>🥉 3rd Place: ₹5,000</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-purple-600">👥 Coordinators</h3>
+                        <div class="space-y-3 mb-6">
+                            <div class="bg-gray-50 p-3 rounded-lg">
+                                <p class="font-semibold">Arjun Mehta</p>
+                                <p class="text-sm text-gray-600">📧 arjun.mehta@techfest.com</p>
+                                <p class="text-sm text-gray-600">📱 +91 32109 87654</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3">Register Now!</h4>
+                            <p class="text-sm text-gray-600 mb-3">Click the button below to register via Google Form</p>
+                            <button onclick="openGoogleForm('design')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+                                📝 Register for Challenge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-4">🚀 TechFest 2024</h3>
+            <p class="mb-4">Join us for an amazing celebration of technology and creativity!</p>
+            <div class="flex justify-center space-x-6">
+                <span>📧 info@techfest2024.com</span>
+                <span>📱 +91 12345 67890</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showCategory(category) {
+            const techEvents = document.getElementById('tech-events');
+            const nontechEvents = document.getElementById('nontech-events');
+            const navButtons = document.querySelectorAll('.nav-btn');
+            
+            if (category === 'tech') {
+                techEvents.style.display = 'block';
+                nontechEvents.style.display = 'none';
+                navButtons[0].classList.add('bg-blue-600');
+                navButtons[0].classList.remove('bg-gray-300');
+                navButtons[1].classList.add('bg-gray-300');
+                navButtons[1].classList.remove('bg-purple-600');
+            } else {
+                techEvents.style.display = 'none';
+                nontechEvents.style.display = 'block';
+                navButtons[1].classList.add('bg-purple-600');
+                navButtons[1].classList.remove('bg-gray-300');
+                navButtons[0].classList.add('bg-gray-300');
+                navButtons[0].classList.remove('bg-blue-600');
+            }
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openGoogleForm(eventType) {
+            // Google Form URLs for each event (replace with your actual Google Form URLs)
+            const formUrls = {
+                'coding': 'https://forms.gle/your-coding-form-id',
+                'webdev': 'https://forms.gle/your-webdev-form-id',
+                'aiml': 'https://forms.gle/your-aiml-form-id',
+                'photography': 'https://forms.gle/your-photography-form-id',
+                'quiz': 'https://forms.gle/your-quiz-form-id',
+                'design': 'https://forms.gle/your-design-form-id'
+            };
+            
+            // Open Google Form in new tab
+            window.open(formUrls[eventType], '_blank');
+            
+            // Close the current modal
+            const activeModal = document.querySelector('.modal.active');
+            if (activeModal) {
+                activeModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Initialize with tech events visible
+        showCategory('tech');
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979b1a0a0724a92c',t:'MTc1Njk2Mzg5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
